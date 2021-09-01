@@ -106,13 +106,14 @@ function notifyRaw(options, callback) {
     server.instance && server.instance.close();
   };
 
-  const actionJackedCallback = (err) =>
+  const actionJackedCallback = (err) => {
     snoreToastResultParser(
       err,
       utils.actionJackerDecorator(this, options, callback, (data) =>
         data === 'activate' ? 'click' : data || false
-      )
+      , 'args')
     );
+  };
 
   options.title = options.title || 'Node Notification:';
   if (
